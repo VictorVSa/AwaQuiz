@@ -21,7 +21,7 @@ class QuestionAdd extends Component
         return view('livewire.question-add');
     }
 
-    public function addOption()
+    public function addOption(): void
     {
         if ($this->type === QuestionType::Multiple->value) {
             $this->options[] = '';
@@ -30,7 +30,7 @@ class QuestionAdd extends Component
         }
     }
 
-    public function removeOption($index)
+    public function removeOption($index): void
     {
         if ($this->type === 'multiple') {
             unset($this->options[$index]);
@@ -41,7 +41,7 @@ class QuestionAdd extends Component
         }
     }
 
-    public function createQuestion()
+    public function createQuestion(): void
     {
         $this->validate([
             'type' => ['required', Rule::in(array_column(QuestionType::cases(), 'value'))],

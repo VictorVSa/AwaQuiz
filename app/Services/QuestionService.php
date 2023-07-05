@@ -6,7 +6,7 @@ use App\Models\Question;
 
 class QuestionService
 {
-    public function createQuestion($data)
+    public function createQuestion($data): Question
     {
         return Question::create($data, ['category_id' => 1]);
     }

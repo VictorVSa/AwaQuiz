@@ -6,7 +6,7 @@ use App\Models\Quiz;
 
 class QuizService
 {
-    public function createQuiz($data)
+    public function createQuiz($data): Quiz
     {
         $quiz = new Quiz;
         $quiz->name = $data['name'];

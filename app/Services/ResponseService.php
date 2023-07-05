@@ -6,7 +6,7 @@ use App\Models\Response;
 
 class ResponseService
 {
-    public function submitResponse($quizId, $clientId, $data)
+    public function submitResponse($quizId, $clientId, $data): void
     {
         foreach ($data as $questionId => $response) {
             if (is_array($response)) {
