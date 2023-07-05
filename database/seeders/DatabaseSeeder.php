@@ -48,8 +48,25 @@ class DatabaseSeeder extends Seeder
                         'created_at' => Carbon::now()
                 ]);
 
-                // Linking Question to Quiz
-                Question::first()->quizzes()->attach(Quiz::first());
+                DB::table('questions')->insert([
+                        'category_id' => Category::first()->id,
+                        'type' => QuestionType::Multiple->value,
+                        'text' => 'What could happen after your bank credentials get stolen?',
+                        'options' => json_encode(['They transfer you money', 'They sell the credentials to a russian hacker for a % of the total balance', 'They say it\'s a prank and nothing bad happens']),
+                        'correct_answers' => json_encode((object) [false, true, false]),
+                        'created_at' => Carbon::now()
+                ]);
+
+                DB::table('questions')->insert([
+                        'category_id' => Category::first()->id,
+                        'type' => QuestionType::Order->value,
+                        'text' => 'Order the numbers',
+                        'options' => json_encode(['5', '2', '1']),
+                        'correct_answers' => json_encode(['1', '2', '5']),
+                        'created_at' => Carbon::now()
+                ]);
+                // Linking Questions to Quiz
+                Question::get()->each(fn (Question $question) => $question->quizzes()->attach(Quiz::first()));
 
                 // Seeding Tags
                 DB::table('tags')->insert([
